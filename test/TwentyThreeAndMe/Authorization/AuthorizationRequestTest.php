@@ -1,13 +1,15 @@
 <?php
 
-namespace Test\TwentyThreeAndMe;
+namespace Test\TwentyThreeAndMe\Authorization;
+
+use Test\TwentyThreeAndMe\BaseTest;
 use TwentyThreeAndMe\Authorization\AuthorizationRequest;
 use TwentyThreeAndMe\Authorization\Scope;
 
 /**
  * Feature: Authorization of a 23AndMe account using a OAuth2 handshake
  */
-class AuthorizationRequestTest extends \PHPUnit_Framework_TestCase
+class AuthorizationRequestTest extends BaseTest
 {
     public function testAuthorizationRequestUrl()
     {
