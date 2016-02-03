@@ -31,12 +31,7 @@ class APIClient
      */
     public function genomes($profileId)
     {
-        $rawResponse = $this->HTTPClient->get(
-            $this->endpoints->genomes($profileId),
-            [
-                'http_errors' => false
-            ]
-        );
+        $rawResponse = $this->HTTPClient->get($this->endpoints->genomes($profileId));
         $interpretedResponse = new ResponseInterpreter($rawResponse);
 
         return new Genome($interpretedResponse->asArray());

@@ -13,11 +13,8 @@ use TwentyThreeAndMe\Exception\HttpStatusException;
 
 class AuthorizationAPITest extends BaseTest
 {
-    private $clientId = 1;
-    private $clientSecret = 'secret123';
     private $authorizationCode = 'sad874g3a5fdg7';
     private $authorizationScopes = ['rs3094315', 'basic'];
-    private $callbackURI = 'https://api.example.com/callback/';
 
     private function mockValidTokenResponse()
     {
