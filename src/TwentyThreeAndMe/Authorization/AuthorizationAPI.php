@@ -12,7 +12,7 @@ class AuthorizationAPI
     private $clientId;
     private $clientSecret;
     private $httpClient;
-    private $APILocation = 'https://api.23andme.com/';
+    private $endpoints;
     private $receiveCodeCallbackURI;
 
     public function __construct($clientId, $clientSecret, Client $httpClient, $receiveCodeCallbackURI)
@@ -20,13 +20,14 @@ class AuthorizationAPI
         $this->clientId = $clientId;
         $this->clientSecret = $clientSecret;
         $this->httpClient = $httpClient;
+        $this->endpoints = new Endpoints();
         $this->receiveCodeCallbackURI = $receiveCodeCallbackURI;
     }
 
     public function requestToken($code, array $scopes)
     {
         $rawResponse = $this->httpClient->post(
-            $uri = $this->APILocation.'token/',
+            $this->endpoints->token(),
             $options = [
                 'form_params' => [
                     'client_id' => $this->clientId,
@@ -35,8 +36,7 @@ class AuthorizationAPI
                     'code' => $code,
                     'redirect_uri' => $this->receiveCodeCallbackURI,
                     'scope' => urlencode(implode(' ', $scopes))
-                ],
-                'http_errors' => false
+                ]
             ]
         );
         $interpretedResponse = new ResponseInterpreter($rawResponse);
