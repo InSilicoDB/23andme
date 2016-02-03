@@ -26,5 +26,6 @@ class GetGenomesTest
 
         $this->assertEquals('c4480ba411939067', $genome->getProfileId());
         $this->assertEquals('ACTAGTAG__TTGADDAAIICCTT', $genome->getGenome());
+        $this->fail('woops');
     }
 }
