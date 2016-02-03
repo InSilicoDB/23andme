@@ -1,17 +1,17 @@
 <phpunit
-        bootstrap="test/bootstrap.php"
+        bootstrap="./test/bootstrap.php"
         colors="true">
 
     <testsuites>
         <testsuite name="23AndMe">
-            <directory>test</directory>
-            <exclude>test/TwentyThreeAndMe/BaseTest.php</exclude>
+            <directory>./test</directory>
+            <exclude>./test/TwentyThreeAndMe/Test/BaseTest.php</exclude>
         </testsuite>
     </testsuites>
 
     <filter>
         <whitelist processUncoveredFilesFromWhitelist="true">
-            <directory suffix=".php">src/</directory>
+            <directory suffix=".php">./src/</directory>
         </whitelist>
     </filter>
 

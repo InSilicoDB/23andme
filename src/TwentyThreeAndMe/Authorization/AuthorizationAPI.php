@@ -27,7 +27,7 @@ class AuthorizationAPI
     {
         $rawResponse = $this->httpClient->post(
             $uri = $this->APILocation.'token/',
-            $postBody = [
+            $options = [
                 'form_params' => [
                     'client_id' => $this->clientId,
                     'client_secret' => $this->clientSecret,
@@ -37,8 +37,7 @@ class AuthorizationAPI
                     'scope' => urlencode(implode(' ', $scopes))
                 ],
                 'http_errors' => false
-            ],
-            $options = []
+            ]
         );
         $interpretedResponse = new ResponseInterpreter($rawResponse);
 
