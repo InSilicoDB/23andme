@@ -1,14 +1,17 @@
 language: php
 php:
-  - '5.6'
-  - '7.0'
-  - hhvm
-  - nightly
+- '5.6'
+- '7.0'
+- hhvm
+- nightly
 before_script:
-  - composer install --dev
+- composer install --dev
 matrix:
   allow_failures:
-    - php: 7.0
-    - php: hhvm
-    - php: nightly
+  - php: 7.0
+  - php: hhvm
+  - php: nightly
 script: phpunit --configuration phpunit.xml
+notifications:
+  slack:
+    secure: U0MMXrp4u5jsVUqmTbA9kTqPiuYKazKUlSygA/+PJJMebR0W7WFZ4MTSng6gqqPe0LM2j+1mGqHghG1db/RGxigZQ+3UAs5gBs4+VZus8k2DJ8eWMKFs+SDzbPwzaKb86IqF9fL11cjG/KUwYF97/gylWzoEX8qtjNQ1FHhLw0Ki7b4+DPQPu60XL38j/9AI6Rb5+475T3XCF9uS1nidcTFUehY8ejAAa+9BAv25wTSJ0UgIYBPBO41tCuq8xmi02c/NJ/Ka/oNh2wae0DANq5lEAuHdjjFkHJ1FJimGSQVGxdQt9LClWM2lc8GODc0hFWvaK5gr1EvY4J4i86hWMhKCAyF/Vyz2iWwLxz3OmVutLo90pIBDo7cTtdAcma7Z+l6nf7ZOu/FSEnPQTTde767P+bqe2ejOKVogbXiykk/whwimKu5Llxybd2S7EPUv3giQVtvg/2gyb13i4yvC2+c8akhK4iakVo95iVFwHdILom0KL4tkAZwuZbTvPvbHd8sj2KeWAWjXqzk0xP+HQwPnmmu+LoNkHn631sF6nEhsC3wszw3WyW8KeqRLuai2C7ufr5xtaBMgYyPD6CztfPXTkRsZxASCMJN8MEXUqrCNAQioWCA28APJ5F+ZOCwxFzK/YwYSMKtmiBFOq5MWxr0buVTEY3wFakXZlxYu8Lk=
