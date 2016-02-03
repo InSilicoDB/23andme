@@ -1,8 +1,8 @@
 <?php
 
-namespace Test\TwentyThreeAndMe;
+namespace Test\TwentyThreeAndMe\Test;
 
 class BaseTest extends \PHPUnit_Framework_TestCase
 {
-
+    use MockHelper;
 }

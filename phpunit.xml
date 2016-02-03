@@ -5,7 +5,7 @@
     <testsuites>
         <testsuite name="23AndMe">
             <directory>./test</directory>
-            <exclude>./test/TwentyThreeAndMe/BaseTest.php</exclude>
+            <exclude>./test/TwentyThreeAndMe/Test/BaseTest.php</exclude>
         </testsuite>
     </testsuites>
 
