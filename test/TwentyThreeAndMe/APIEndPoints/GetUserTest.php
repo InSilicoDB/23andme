@@ -23,8 +23,9 @@ class GetUserTest extends BaseTest
 
     public function testGetUser()
     {
+        $token = $this->givenThereIsAToken();
         $mockedAPI = $this->mockAPI($this->provideBasicUserResponse());
-        $user = $mockedAPI->user();
+        $user = $mockedAPI->user($token);
 
         $this->assertEquals("a42e94634e3f7683", $user->getUserId());
         $this->assertEquals("c4480ba411939067", $user->getProfiles()[0]->getProfileId());

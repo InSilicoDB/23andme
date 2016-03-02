@@ -21,8 +21,9 @@ class GetGenomesTest
 
     public function testGetValidGenome()
     {
+        $token = $this->givenThereIsAToken();
         $api = $this->mockAPI($this->mockValidGenomeResponses());
-        $genome = $api->genomes('c4480ba411939067');
+        $genome = $api->genomes($token, 'c4480ba411939067');
 
         $this->assertEquals('c4480ba411939067', $genome->getProfileId());
         $this->assertEquals('ACTAGTAG__TTGADDAAIICCTT', $genome->getGenome());
