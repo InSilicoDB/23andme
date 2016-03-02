@@ -35,7 +35,7 @@ class AuthorizationAPI
                     'grant_type' => 'authorization_code',
                     'code' => $code,
                     'redirect_uri' => $this->receiveCodeCallbackURI,
-                    'scope' => urlencode(implode(' ', $scopes))
+                    'scope' => implode(' ', $scopes)
                 ]
             ]
         );
