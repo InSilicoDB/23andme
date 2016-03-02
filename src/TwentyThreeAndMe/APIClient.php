@@ -32,7 +32,7 @@ class APIClient
             [
                 'http_errors' => false,
                 'headers' => [
-                    'Authorization: ' . $token->getTokenType() . ' ' . $token->getAccessToken()
+                    'Authorization' => $token->getTokenType() . ' ' . $token->getAccessToken()
                 ]
             ],
             $options
