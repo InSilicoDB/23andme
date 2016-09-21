@@ -8,6 +8,8 @@
 
 namespace TwentyThreeAndMe\Responses;
 
+use TwentyThreeAndMe\Genomes\Annotation;
+
 /**
  * Represents a genome
  */
@@ -30,5 +32,10 @@ class Genome
     public function getGenome()
     {
         return $this->genome;
+    }
+
+    public function annotateGenotype(Annotation $annotation)
+    {
+        return $annotation->genotypeFromSample($this->genome);
     }
 }
