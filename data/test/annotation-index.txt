@@ -3,7 +3,7 @@
 # strand is always +1.
 index	snp	chromosome	chromosome_position
 0	rs41362547	7	10044
-1	rs28358280	11	10550
+1	rs28358280	Y	10550
 2	rs3915952	19	11251
 3	rs2853493	X	11467
 4	rs3088053	9	11812

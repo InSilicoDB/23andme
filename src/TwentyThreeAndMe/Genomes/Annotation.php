@@ -47,7 +47,11 @@ class Annotation
     public function genotypeFromSample($sample)
     {
         $genotypeValue = substr($sample, $this->sampleStringIndex, 2);
-        if (!empty($genotypeValue)) {
+        if (in_array(strtolower($this->getChromosome()), ['mt', 'y'])) {
+            $genotypeValue = substr($genotypeValue, 0, 1);
+        }
+
+        if (!empty($genotypeValue) && $genotypeValue != '__') {
             return $genotypeValue;
         }
 
