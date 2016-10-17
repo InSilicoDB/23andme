@@ -47,7 +47,7 @@ class Annotation
     public function genotypeFromSample($sample)
     {
         $genotypeValue = substr($sample, $this->sampleStringIndex, 2);
-        if (!empty($genotypeValue)) {
+        if (!empty($genotypeValue) && $genotypeValue != '__') {
             return $genotypeValue;
         }
 

@@ -20,6 +20,7 @@ class GenomeAnnotatorTest extends BaseTest
     {
         return [
             ['rs41337244'],
+            ['rs3088053']
         ];
     }
 
