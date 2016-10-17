@@ -10,7 +10,7 @@ class GenomeTest extends BaseTest
     {
         return [
             [new Annotation(0, 'rs41362547', '7', 10044), 'AC'],
-            [new Annotation(1, 'rs28358280', '11', 10550), 'TA'],
+            [new Annotation(1, 'rs28358280', 'Y', 10550), 'T'],
             [new Annotation(3, 'rs2853493', 'X', 11467), 'AG'],
             [new Annotation(7, 'rs28359175', '14', 13263), 'DD'],
             [new Annotation(8, 'rs41358152', '8', 13780), 'AA'],
