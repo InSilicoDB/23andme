@@ -11,7 +11,7 @@ trait GenomeHelper
     {
         return new Genome([
             'id' => 1,
-            'genome' => 'ACTTGTAG__TTGADDAAIICCTT'
+            'genome' => 'ACTTGTAG__TTGADDAAIICCTTIIIIII'
         ]);
     }
 

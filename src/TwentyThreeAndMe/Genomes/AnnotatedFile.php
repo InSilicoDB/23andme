@@ -36,7 +36,7 @@ EOHEADER;
 
     public function append($name, $chromosome, $position, $genotype)
     {
-        $this->annotations[$chromosome][] = implode("\t", [$name, $chromosome, $position, $genotype]);
+        $this->annotations[$chromosome][$position] = implode("\t", [$name, $chromosome, $position, $genotype]);
 
     }
 
@@ -44,6 +44,7 @@ EOHEADER;
     {
         ksort($this->annotations, SORT_NATURAL);
         foreach ($this->annotations as $chromosomeAnnotations) {
+            ksort($chromosomeAnnotations);
             foreach ($chromosomeAnnotations as $annotation) {
                 fwrite($this->fp, $annotation. PHP_EOL);
             }

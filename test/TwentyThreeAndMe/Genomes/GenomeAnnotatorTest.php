@@ -74,6 +74,20 @@ class GenomeAnnotatorTest extends BaseTest
 
     public function testThatAnnotationsAreSortedByPosition()
     {
-        $this->markTestIncomplete();
+        $genomeAnnotator = $this->givenThereIsAnAnnotator();
+        $annotationsFile = $this->whenAnnotationsHaveBeenSavedToFile($genomeAnnotator);
+
+        $annotations = file($annotationsFile->getFilename());
+        $previousPosition = 0;
+        foreach ($annotations as $annotation) {
+            if (   substr($annotation, 0, 1) != '#'
+                && strlen(trim($annotation)) !== 0) {
+                list($name, $chromosome, $position, $genotype) = explode("\t", $annotation);
+                if ($chromosome == 1) {
+                    $this->assertGreaterThan($previousPosition, $position, 'Annotation data received with position out-of-order: ' . $position . ' after ' . $previousPosition);
+                    $previousPosition = $position;
+                }
+            }
+        }
     }
 }
