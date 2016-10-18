@@ -54,4 +54,26 @@ class GenomeAnnotatorTest extends BaseTest
             'File does appear to contain unexpected data for SNP '.$snpName
         );
     }
+
+    public function testThatAnnotationsAreSortedByChromosome()
+    {
+        $genomeAnnotator = $this->givenThereIsAnAnnotator();
+        $annotationsFile = $this->whenAnnotationsHaveBeenSavedToFile($genomeAnnotator);
+
+        $annotations = file($annotationsFile->getFilename());
+        $previousChromosome = 1;
+        foreach ($annotations as $annotation) {
+            if (   substr($annotation, 0, 1) != '#'
+                && strlen(trim($annotation)) !== 0) {
+                list($name, $chromosome, $position, $genotype) = explode("\t", $annotation);
+                $this->assertLessThanOrEqual(0, strnatcasecmp($previousChromosome, $chromosome), 'Data for chromosome received out of order: ' . $chromosome . ' after ' . $previousChromosome);
+                $previousChromosome = $chromosome;
+            }
+        }
+    }
+
+    public function testThatAnnotationsAreSortedByPosition()
+    {
+        $this->markTestIncomplete();
+    }
 }
