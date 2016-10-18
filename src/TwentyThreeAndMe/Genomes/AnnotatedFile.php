@@ -5,6 +5,7 @@ class AnnotatedFile
 {
     private $filename;
     private $fp;
+    private $annotations = [];
 
     public function __construct($filename)
     {
@@ -35,17 +36,19 @@ EOHEADER;
 
     public function append($name, $chromosome, $position, $genotype)
     {
-        fwrite(
-            $this->fp,
-            implode(
-                "\t",
-                [$name, $chromosome, $position, $genotype]
-            ) . PHP_EOL
-        );
+        $this->annotations[$chromosome][$position] = implode("\t", [$name, $chromosome, $position, $genotype]);
+
     }
 
     public function close()
     {
+        ksort($this->annotations, SORT_NATURAL);
+        foreach ($this->annotations as $chromosomeAnnotations) {
+            ksort($chromosomeAnnotations);
+            foreach ($chromosomeAnnotations as $annotation) {
+                fwrite($this->fp, $annotation. PHP_EOL);
+            }
+        }
         fclose($this->fp);
     }
 }
