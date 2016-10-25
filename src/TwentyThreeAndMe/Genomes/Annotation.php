@@ -10,6 +10,14 @@ class Annotation
 
     public function __construct($sampleLocation, $name, $chromosome, $position)
     {
+        if (empty($chromosome)) {
+            throw new AnnotationException('The chromosome should not be 0 or empty');
+        }
+
+        if (empty($position)) {
+            throw new AnnotationException('The position should not be 0 or empty');
+        }
+
         $this->sampleStringIndex = $sampleLocation * 2;
         $this->name = $name;
         $this->chromosome = $chromosome;
