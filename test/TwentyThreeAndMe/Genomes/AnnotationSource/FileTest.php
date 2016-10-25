@@ -33,4 +33,27 @@ class FileTest extends BaseTest
 
         $this->assertTrue($found, sprintf('Expected annotation for %s not found in index file', $expectedAnnotation->getName()));
     }
+
+    public function invalidAnnotationSNPs()
+    {
+        return [
+            ['i28357682'],
+            ['rs28357369'],
+            ['rs2853506'],
+        ];
+    }
+
+    /**
+     * @dataProvider invalidAnnotationSNPs
+     */
+    public function testInvalidAnnotationsAreIgnored($snpName)
+    {
+        $annotationSource = $this->givenThereIsAnAnnotationSource();
+        foreach ($annotationSource->all() as $annotation) {
+            /** @var Annotation $annotation */
+            if ($annotation->getName() == $snpName) {
+                $this->fail($snpName . ' is invalid and should be ignored');
+            }
+        }
+    }
 }

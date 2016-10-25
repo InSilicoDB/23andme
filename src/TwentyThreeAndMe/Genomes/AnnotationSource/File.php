@@ -2,6 +2,7 @@
 namespace TwentyThreeAndMe\Genomes\AnnotationSource;
 
 use TwentyThreeAndMe\Genomes\Annotation;
+use TwentyThreeAndMe\Genomes\AnnotationException;
 use TwentyThreeAndMe\Genomes\AnnotationSource;
 
 class File
@@ -21,7 +22,11 @@ class File
             if (substr($indexEntryData, 0, 1) == '#') continue;
             list($snpIndex, $snpName, $chromosomeName, $chromosomePosition) = explode("\t", trim($indexEntryData));
             if (!is_numeric($snpIndex)) continue;
-            yield new Annotation($snpIndex, $snpName, $chromosomeName, $chromosomePosition);
+            try {
+                yield new Annotation($snpIndex, $snpName, $chromosomeName, $chromosomePosition);
+            } catch (AnnotationException $e) {
+                // we ignore invalid lines
+            }
         }
         fclose($fp);
     }
