@@ -1,6 +1,9 @@
 <?php
 namespace TwentyThreeAndMe\Genomes;
 
+use TwentyThreeAndMe\Exception\ValidationException;
+use TwentyThreeAndMe\Types\Chromosome;
+
 class AnnotatedFile
 {
     private $filename;
@@ -34,10 +37,13 @@ EOHEADER;
         fwrite($this->fp, $header);
     }
 
-    public function append($name, $chromosome, $position, $genotype)
+    public function append($name, Chromosome $chromosome, $position, $genotype)
     {
-        $this->annotations[$chromosome][$position] = implode("\t", [$name, $chromosome, $position, $genotype]);
-
+        try {
+            $this->annotations[$chromosome->asInt()][$position] = implode("\t", [$name, $chromosome->asString(), $position, $genotype]);
+        } catch (ValidationException $e) {
+            // skip validation errors
+        }
     }
 
     public function close()
