@@ -42,7 +42,7 @@ EOHEADER;
 
     public function close()
     {
-        ksort($this->annotations, SORT_NATURAL);
+        ksort($this->annotations, SORT_NUMERIC);
         foreach ($this->annotations as $chromosomeAnnotations) {
             ksort($chromosomeAnnotations);
             foreach ($chromosomeAnnotations as $annotation) {

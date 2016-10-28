@@ -61,12 +61,19 @@ class GenomeAnnotatorTest extends BaseTest
         $annotationsFile = $this->whenAnnotationsHaveBeenSavedToFile($genomeAnnotator);
 
         $annotations = file($annotationsFile->getFilename());
-        $previousChromosome = 1;
+        $previousChromosome = null;
         foreach ($annotations as $annotation) {
+            if (is_null($previousChromosome)) {
+                continue;
+            }
             if (   substr($annotation, 0, 1) != '#'
                 && strlen(trim($annotation)) !== 0) {
                 list($name, $chromosome, $position, $genotype) = explode("\t", $annotation);
-                $this->assertLessThanOrEqual(0, strnatcasecmp($previousChromosome, $chromosome), 'Data for chromosome received out of order: ' . $chromosome . ' after ' . $previousChromosome);
+                $chromosomes = [$previousChromosome, $chromosome];
+                $sortedChromosomes = [$previousChromosome, $chromosome];
+                sort($sortedChromosomes, SORT_NUMERIC);
+                $this->assertEquals($chromosomes, $sortedChromosomes, 'Data for chromosome received out of order: ' . $chromosome . ' after ' . $previousChromosome);
+                //$this->assertLessThanOrEqual(0, strcasecmp($previousChromosome, $chromosome), 'Data for chromosome received out of order: ' . $chromosome . ' after ' . $previousChromosome);
                 $previousChromosome = $chromosome;
             }
         }
